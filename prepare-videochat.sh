@@ -180,6 +180,9 @@ CAPTURE_STREAM=av
 # want to skip autodetection (e.g. for multiple webcams):
 #DEVICE=/dev/video0
 
+# Force use of GST 1.0
+FORCE_GST_1_0="yes"
+
 ### FUNCTIONS
 
 has_kernel_module() {
@@ -317,7 +320,8 @@ GST_0_10_VIDEO_FORMAT=$GST_VIDEO_FORMAT
 
 if [ $DIST = "Debian" -a `echo "$RELEASE >= 8.0"   | bc` -eq 1 ] ||\
    [ $DIST = "Ubuntu" -a `echo "$RELEASE >= 14.04" | bc` -eq 1 ] ||\
-   [ $DIST = "Arch" ]
+   [ $DIST = "Arch" ] ||\
+   [ $FORCE_GST_1_0="yes"]
 then
     GST_VER="1.0"
     GST_VIDEO_CONVERTER="videoconvert"
